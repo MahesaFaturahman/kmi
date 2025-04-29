@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yayasan Peduli Pangan Nusantara - Makan Siang Gratis</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #e74c3c;
+            --secondary-color: #2c3e50;
+            --accent-color: #f39c12;
+            --light-color: #ecf0f1;
+            --dark-color: #34495e;
+            --success-color: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .btn:hover {
+            background: #c0392b;
+            transform: translateY(-2px);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--secondary-color);
+            position: relative;
+            font-size: 2.2rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            margin: 15px auto;
+        }
+        
+        /* Header */
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: var(--secondary-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 70px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        /* Stats Section */
+        .stats {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .stat-item h3 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        /* About Section */
+        .about {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: center;
+        }
+        
+        .about-box {
+            flex: 1;
+            min-width: 300px;
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .about-box h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .about-box ul {
+            list-style-position: inside;
+            margin-top: 15px;
+        }
+        
+        .about-box li {
+            margin-bottom: 10px;
+        }
+        
+        /* Programs Section */
+        .programs {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .programs-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .program-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .program-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .program-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .program-info {
+            padding: 25px;
+        }
+        
+        .program-info h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .program-info ul {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        
+        .program-info li {
+            margin-bottom: 8px;
+        }
+        
+        /* Partners Section */
+        .partners {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .partner-logos {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .partner-logo {
+            width: 150px;
+            height: 100px;
+            object-fit: contain;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+        
+        .partner-logo:hover {
+            filter: grayscale(0);
+        }
+        
+        .partner-cta {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: var(--light-color);
+            border-radius: 8px;
+        }
+        
+        /* Reports Section */
+        .reports {
+            padding: 80px 0;
+            background-color: var(--light-color);
+        }
+        
+        .reports-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .report-card {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .report-card h3 {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .gallery-item {
+            height: 150px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.05);
+        }
+        
+        /* Donation Section */
+        .donation {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .donation-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            margin-bottom: 40px;
+        }
+        
+        .donation-card {
+            flex: 1;
+            min-width: 250px;
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .donation-card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .donation-card input {
+            width: 100%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .bank-info {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: var(--light-color);
+            padding: 30px;
+            border-radius: 8px;
+        }
+        
+        .bank-info h3 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-info h2 {
+            margin-bottom: 30px;
+        }
+        
+        .contact-info p {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-info i {
+            margin-right: 15px;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+        }
+        
+        .volunteer-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .volunteer-form h2 {
+            margin-bottom: 20px;
+            color: var(--secondary-color);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+        }
+        
+        .form-group textarea {
+            height: 120px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0 20px;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-links a {
+            color: white;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            margin-bottom: 30px;
+        }
+        
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2rem;
+        }
+        
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .hamburger {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Yayasan<span>PanganNutrisiIndonesia</span></a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang Kami</a></li>
+                    <li><a href="#programs">Program</a></li>
+                    <li><a href="#partners">Mitra BGN</a></li>
+                    <li><a href="#donation">Donasi</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+                <div class="hamburger" id="hamburger">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Makan Siang Gratis untuk Mereka yang Membutuhkan</h1>
+            <p>Bersama mitra BGN, kami menyediakan makanan bergizi bagi anak-anak, lansia, dan keluarga kurang mampu di seluruh Indonesia</p>
+            <a href="#donation" class="btn">Dukung Program Kami</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <h3 id="meals-served">5,000+</h3>
+                    <p>Porsi/Hari</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="locations">120+</h3>
+                    <p>Lokasi Distribusi</p>
+                </div>
+                <div class="stat-item">
+                    <h3 id="partners-count">50+</h3>
+                    <p>Mitra BGN</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">Tentang Kami</h2>
+            <div class="about-content">
+                <div class="about-box">
+                    <h3>Visi</h3>
+                    <p>"Menjadi penghubung utama dalam mengurangi kelaparan dan meningkatkan gizi masyarakat melalui kolaborasi dengan mitra BGN"</p>
+                </div>
+                <div class="about-box">
+                    <h3>Misi</h3>
+                    <ul>
+                        <li>Menyediakan akses makanan bergizi gratis</li>
+                        <li>Membangun jaringan mitra peduli pangan</li>
+                        <li>Menciptakan sistem distribusi yang efisien</li>
+                        <li>Edukasi pentingnya gizi seimbang</li>
+                    </ul>
+                </div>
+                <div class="about-box">
+                    <h3>Sejarah</h3>
+                    <p>Didirikan pada 2023 sebagai respon terhadap meningkatnya kebutuhan pangan masyarakat, yayasan kami telah berkembang menjadi jaringan nasional dengan dukungan dari berbagai mitra BGN.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Programs Section -->
+    <section class="programs" id="programs">
+        <div class="container">
+            <h2 class="section-title">Program Kami</h2>
+            <div class="programs-container">
+                <div class="program-card">
+                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="program-info">
+                        <h3>Pangan Untuk Pendidikan</h3>
+                        <p>Distribusi makan siang ke sekolah-sekolah di daerah tertinggal</p>
+                        <ul>
+                            <li>100 sekolah mitra</li>
+                            <li>15.000 siswa terbantu</li>
+                            <li>Menu bergizi seimbang</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="program-info">
+                        <h3>Dapur Umum</h3>
+                        <p>Penyediaan makanan siap saji di lokasi-lokasi strategis</p>
+                        <ul>
+                            <li>30 titik dapur umum</li>
+                            <li>Buka 6 hari/minggu</li>
+                            <li>Melayani semua kalangan</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+                <div class="program-card">
+                    <div class="program-img" style="background-image: url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                    <div class="program-info">
+                        <h3>BGN Partner Network</h3>
+                        <p>Kolaborasi dengan mitra BGN untuk perluasan jangkauan</p>
+                        <ul>
+                            <li>Pelatihan manajemen logistik</li>
+                            <li>Sistem monitoring terpadu</li>
+                            <li>Peningkatan kapasitas mitra</li>
+                        </ul>
+                        <a href="#" class="btn btn-outline">Pelajari Lebih Lanjut</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <h2 class="section-title">Mitra BGN Kami</h2>
+            <div class="partner-logos">
+                <img src="https://via.placeholder.com/150x80?text=Mitra+1" alt="Mitra BGN 1" class="partner-logo">
+                <img src="https://via.placeholder.com/150x80?text=Mitra+2" alt="Mitra BGN 2" class="partner-logo">
+                <img src="https://via.placeholder.com/150x80?text=Mitra+3" alt="Mitra BGN 3" class="partner-logo">
+                <img src="https://via.placeholder.com/150x80?text=Mitra+4" alt="Mitra BGN 4" class="partner-logo">
+                <img src="https://via.placeholder.com/150x80?text=Mitra+5" alt="Mitra BGN 5" class="partner-logo">
+            </div>
+            <div class="partner-cta">
+                <h3>Bergabunglah Sebagai Mitra BGN</h3>
+                <p>Kami membuka kesempatan bagi perusahaan/organisasi untuk bergabung sebagai mitra BGN dan bersama-sama mengurangi kelaparan di Indonesia</p>
+                <a href="#contact" class="btn">Hubungi Kami</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Section -->
+    <section class="reports" id="reports">
+        <div class="container">
+            <h2 class="section-title">Laporan & Transparansi</h2>
+            <div class="reports-container">
+                <div class="report-card">
+                    <h3>Laporan Bulanan</h3>
+                    <p>Update distribusi dan penggunaan dana secara transparan</p>
+                    <a href="#" class="btn btn-outline">Download Laporan Terbaru</a>
+                </div>
+                <div class="report-card">
+                    <h3>Galeri Kegiatan</h3>
+                    <p>Lihat dokumentasi kegiatan distribusi kami</p>
+                    <div class="gallery">
+                        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1507048331197-7d4ac70811cf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');"></div>
+                        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');"></div>
+                        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80');"></div>
+                        <div class="gallery-item" style="background-image: url('https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80');"></div>
+                    </div>
+                </div>
+                <div class="report-card">
+                    <h3>Transparansi Keuangan</h3>
+                    <p>Kami berkomitmen pada akuntabilitas penuh:</p>
+                    <ul>
+                        <li>Laporan keuangan triwulanan</li>
+                        <li>Audit eksternal tahunan</li>
+                        <li>Sistem pengadaan terbuka</li>
+                        <li>Penggunaan dana yang efisien</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline">Lihat Laporan Keuangan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Donation Section -->
+    <section class="donation" id="donation">
+        <div class="container">
+            <h2 class="section-title">Dukung Program Kami</h2>
+            <div class="donation-options">
+                <div class="donation-card">
+                    <h3>Donasi Rutin</h3>
+                    <p>Rp 50.000/bulan dapat memberikan 10 porsi makan</p>
+                    <button class="btn">Donasi Rutin</button>
+                </div>
+                <div class="donation-card">
+                    <h3>Donasi Sekali</h3>
+                    <input type="number" placeholder="Jumlah donasi (Rp)">
+                    <button class="btn">Donasi Sekarang</button>
+                </div>
+                <div class="donation-card">
+                    <h3>Donasi Barang</h3>
+                    <p>Bahan makanan/peralatan dapur</p>
+                    <button class="btn">Informasi Lebih Lanjut</button>
+                </div>
+            </div>
+            <div class="bank-info">
+                <h3>Transfer Bank</h3>
+                <p>Bank ABC: 123.456.789 a.n Yayasan Peduli Pangan Nusantara</p>
+                <p>Bank XYZ: 987.654.321 a.n Yayasan Peduli Pangan Nusantara</p>
+                <p>Bank DEF: 456.789.123 a.n Yayasan Peduli Pangan Nusantara</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Hubungi Kami</h2>
+                    <p><i class="fas fa-map-marker-alt"></i> Jl. Kemanusiaan No. 123, Jakarta 12345</p>
+                    <p><i class="fas fa-phone"></i> (021) 123-4567</p>
+                    <p><i class="fas fa-envelope"></i> info@yayasanpedulipangan.org</p>
+                    <p><i class="fas fa-clock"></i> Senin-Jumat: 08.00-17.00 WIB</p>
+                    
+                    <h3 style="margin-top: 40px;">Media Sosial</h3>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="volunteer-form">
+                    <h2>Jadi Relawan</h2>
+                    <form id="volunteerForm">
+                        <div class="form-group">
+                            <input type="text" placeholder="Nama Lengkap" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" placeholder="Nomor HP" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Pesan/Kemampuan yang bisa disumbangkan" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Daftar Relawan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="#home">Beranda</a>
+                <a href="#about">Tentang Kami</a>
+                <a href="#programs">Program</a>
+                <a href="#partners">Mitra BGN</a>
+                <a href="#donation">Donasi</a>
+                <a href="#contact">Kontak</a>
+                <a href="#">Kebijakan Privasi</a>
+            </div>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p class="copyright">© 2023 Yayasan Peduli Pangan Nusantara. Seluruh hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
+            });
+        });
+        
+        // Animate Stats Counter
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = value.toLocaleString() + "+";
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        // Start animation when stats section is in view
+        const statsSection = document.querySelector('.stats');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateValue("meals-served", 0, 5000, 2000);
+                    animateValue("locations", 0, 120, 2000);
+                    animateValue("partners-count", 0, 50, 2000);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+        
+        observer.observe(statsSection);
+        
+        // Form Submission
+        const volunteerForm = document.getElementById('volunteerForm');
+        volunteerForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Terima kasih telah mendaftar sebagai relawan! Kami akan menghubungi Anda segera.');
+            volunteerForm.reset();
+        });
+    </script>
+</body>
+</html>
